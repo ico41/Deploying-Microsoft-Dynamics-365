@@ -1,0 +1,484 @@
+{
+	"name": "CRMDemographics",
+	"properties": {
+		"activities": [
+			{
+				"name": "UpsertCRMContacts",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "d365container//SDPEBA-D365-Demographics.csv"
+					},
+					{
+						"name": "Destination",
+						"value": "contact"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DynamicsSink",
+						"writeBatchSize": 10,
+						"writeBehavior": "upsert",
+						"ignoreNullValues": false,
+						"alternateKeyName": "prsc_systemid"
+					},
+					"enableStaging": false,
+					"logSettings": {
+						"enableCopyActivityLog": true,
+						"copyActivityLogSettings": {
+							"logLevel": "Warning",
+							"enableReliableLogging": false
+						},
+						"logLocationSettings": {
+							"linkedServiceName": {
+								"referenceName": "DemographicsBlobService",
+								"type": "LinkedServiceReference"
+							}
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "SystemID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_systemid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastFourSSN",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_lastfourssn",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EmployeeID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_employeeid",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "FirstName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "firstname",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MiddleName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "middlename",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "LastName",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "lastname",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Birthdate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "birthdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "Gender",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_gendertext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MaritalStatus",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_maritalstatustext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "EmployeeType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_employeetypetext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "MemberLeaveStatus",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_memberleavestatustext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Agency",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_agencytext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Department",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_departmenttext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Division",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_divisiontext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Unit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_unittext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Classification",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "department",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WorkLocation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_worklocation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PayLocation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_paylocation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WorkLoad",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_workloadtext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "PositionType",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_positiontypetext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HireDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_hiredate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "RehireDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_rehiredate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "TermDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_terminationdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "TermReason",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_terminationreason",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "AppointmentDate",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_appointmentdate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "Salary",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_salary",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "SalaryStep",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_salarysteptext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HoursWorked",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_hoursworked",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "Academy",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "prsc_academytext",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HomeAddress1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "address1_line1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HomeAddress2",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "address1_line2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HomeZipCode",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "address1_postalcode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HomeEmail",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "emailaddress2",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "HomeFax",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "address1_fax",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WorkEmail",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "emailaddress1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "WorkPhone",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "telephone1",
+									"type": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Demographics1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Contact_Dynamics",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-10-15T22:39:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

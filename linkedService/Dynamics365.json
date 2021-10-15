@@ -1,0 +1,17 @@
+{
+	"name": "Dynamics365",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Microsoft Dynamics 365 Customer Service",
+		"annotations": [],
+		"type": "Dynamics",
+		"typeProperties": {
+			"deploymentType": "Online",
+			"serviceUri": "https://integratedlabor.crm.dynamics.com/",
+			"authenticationType": "AADServicePrincipal",
+			"servicePrincipalCredentialType": "ServicePrincipalKey",
+			"servicePrincipalId": "d6d223fa-c4a9-4286-83bf-b4174915b8ef",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIklMU0NSTURBVEFfZGEwNzY4M2MtZDIxYS00MzllLWE5ZjMtNmFlYzRjZWZiY2RmIg0KfQ=="
+		}
+	}
+}

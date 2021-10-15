@@ -1,0 +1,9 @@
+{
+	"name": "ilscrmdata",
+	"location": "westus3",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4c04e282-8e6c-4161-85be-e897d5b32922",
+		"tenantId": "e16c21b7-c088-4025-959a-5fbf47e4f737"
+	}
+}
